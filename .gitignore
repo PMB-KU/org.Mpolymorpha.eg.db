@@ -1,0 +1,7 @@
+.vscode/
+.Rhistory
+__pycache__/
+*.csv
+*.json
+.Rhistory
+org.Mpolymorpha.eg.db/
