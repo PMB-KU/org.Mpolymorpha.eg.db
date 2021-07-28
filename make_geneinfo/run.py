@@ -20,8 +20,9 @@ def load_annotaions(path: Optional[str] = None, all_gene_ids: Optional[List[str]
     else:
         with open(path) as f:
             annotations = json.load(f)
-        
+
         return annotations
+
 
 def load_nomenclatures(path: Optional[str] = None) -> List:
     if path is None:
@@ -37,6 +38,7 @@ def load_nomenclatures(path: Optional[str] = None) -> List:
             nomenclatures = json.load(f)
         return nomenclatures
 
+
 def make_gene2go(all_gene_ids: List[str], annotations: Dict):
     gene2go = []
     for gene_id in all_gene_ids:
@@ -44,12 +46,13 @@ def make_gene2go(all_gene_ids: List[str], annotations: Dict):
 
         if annotation is None:
             continue
-        
+
         for go in annotation["GO"]:
             gene2go.append([gene_id, go["id"], "ISO"])
-    
+
     gene2go = pd.DataFrame(gene2go, columns=["GID", "GO", "EVIDENCE"])
     gene2go.to_csv("gene2go.csv", index=None)
+
 
 def make_geneinfo(all_gene_ids: List[str], nomenclatures: List):
     gene_info = {}
@@ -74,18 +77,20 @@ def make_geneinfo(all_gene_ids: List[str], nomenclatures: List):
 
     df = pd.DataFrame.from_dict(gene_info, orient="index")
     df.index.name = "GID"
+    df["ENTREZID"] = df.index
     df.to_csv("gene_info.csv")
-    
+
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--use-api", action="store_true")
     parser.add_argument("--annotation", default="annotation.json", type=str)
-    parser.add_argument("--nomenclature", default="nomenclatures.json", type=str)
+    parser.add_argument(
+        "--nomenclature", default="nomenclatures.json", type=str)
     args = parser.parse_args()
 
-    annotations = load_annotaions("annotation.json")
-    nomenclatures = load_nomenclatures("nomenclatures.json")
+    # annotations = load_annotaions("annotation.json")
+    # nomenclatures = load_nomenclatures("nomenclatures.json")
     all_gene_ids = api.get_all_gene_ids()
 
     if args.use_api:
@@ -97,7 +102,6 @@ def main():
 
     make_gene2go(all_gene_ids, annotations)
     make_geneinfo(all_gene_ids, nomenclatures)
-        
 
 
 if __name__ == "__main__":
