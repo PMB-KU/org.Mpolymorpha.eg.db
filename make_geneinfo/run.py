@@ -1,6 +1,5 @@
 import argparse
 import json
-import sys
 from typing import Dict, List, Optional
 
 import pandas as pd
@@ -50,6 +49,19 @@ def make_gene2go(all_gene_ids: List[str], annotations: Dict):
     
     gene2go = pd.DataFrame(gene2go, columns=["GID", "GO", "EVIDENCE"])
     gene2go.to_csv("gene2go.csv", index=None)
+
+def make_gene2ko(all_gene_ids: List[str], annotations: Dict):
+    gene2ko = []
+    for gene_id in all_gene_ids:
+        annotation = annotations.get(gene_id)
+
+        if annotation is None:
+            continue
+        
+        for kegg in annotation["KEGG"]:
+            gene2ko.append([gene_id, kegg["id"]])
+        gene2ko = pd.DataFrame(gene2ko, columns=["GID", "KO"])
+        
 
 def make_geneinfo(all_gene_ids: List[str], nomenclatures: List):
     gene_info = {}
