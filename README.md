@@ -3,15 +3,23 @@
 !important
 This is **Unoficial Annotation Packages**
 
-
 ## Usage
+
+You can install this package with the following commands.
+
+```r
+remotes::install_github("PMB-KU/org.Mpolymorpha.eg.db")
+library(org.Mpolymorpha.eg.db)
+```
+
+## Creating your own OrgDb packages
 
 ### makeOrgDb.R
 
-|require files||
-|---|---|
-|`gene_info.csv`|This file should have the columns, "GID", "SYMBOL", "PRODUCT" and "REFERENCE"|
-|`gene2go.csv`|This file should have the columns, "GID", "GO" and "EVIDENCE CODE" |
+| require files   |                                                                               |
+| --------------- | ----------------------------------------------------------------------------- |
+| `gene_info.csv` | This file should have the columns, "GID", "SYMBOL", "PRODUCT" and "REFERENCE" |
+| `gene2go.csv`   | This file should have the columns, "GID", "GO" and "EVIDENCE CODE"            |
 
 Please check these files located in the same directory as `makeOrgDb.R` and run scripts. 
 

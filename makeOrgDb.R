@@ -1,12 +1,6 @@
-# if (!requireNamespace("BiocManager", quietly = TRUE))
-#     install.packages("BiocManager")
-
-# if (!requireNamespace("AnnotationForge", quietly = TRUE))
-#     BiocManager::install("AnnotationForge")
-
 library(AnnotationForge)
 
-geneInfo <- read.csv("gene_info.csv", row.names=NULL)
+geneInfo <- read.csv("gene_info.csv", row.names = NULL)
 gene2go <- read.table("gene2go.csv", row.names = NULL, header = TRUE, sep = ",")
 
 makeOrgPackage(gene_info=geneInfo, go=gene2go,
