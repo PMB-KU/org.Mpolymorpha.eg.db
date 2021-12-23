@@ -1,0 +1,13 @@
+Package: org.Mpolymorpha.eg.db
+Title: Genome wide annotation for Marchantia polymorpha
+Description: Genome wide annotation for Marchantia polymorpha, primarily based on mapping using Entrez Gene identifiers.
+Version: 0.1
+Author: illumination-k <illumination.k.27@gmail.com>
+Maintainer: illumination-k <illumination.k.27@gmail.com>
+Depends: R (>= 2.7.0), methods, AnnotationDbi (>= 1.54.1)
+Suggests: DBI, annotate, RUnit
+License: Artistic-2.0
+organism: Marchantia polymorpha
+species: Marchantia polymorpha
+biocViews: OrgDb, annotation
+

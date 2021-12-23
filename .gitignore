@@ -4,5 +4,4 @@ __pycache__/
 *.csv
 *.json
 .Rhistory
-org.Mpolymorpha.eg.db/
 Rplots.pdf
